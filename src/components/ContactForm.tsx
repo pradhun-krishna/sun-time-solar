@@ -34,48 +34,29 @@ const ContactForm = ({
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      const response = await fetch("https://formspree.io/f/mblokbjg", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        }),
-      });
+    // Build WhatsApp message
+    const message =
+      `*Quotation Request*%0A` +
+      `--------------------%0A` +
+      `*Name:* ${formData.name}%0A` +
+      `*Email:* ${formData.email}%0A` +
+      `*Phone:* ${formData.phone}%0A` +
+      `*Message:* ${formData.message}`;
+    const whatsappUrl = `https://wa.me/919751081004?text=${message}`;
 
-      const result = await response.json();
-
-      if (response.ok) {
-        toast({
-          title: "Form submitted successfully!",
-          description: "We'll get back to you as soon as possible.",
-        });
-
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: productName ? `I'm interested in ${productName}` : "",
-        });
-      } else {
-        throw new Error(result?.errors?.[0]?.message || "Submission failed");
-      }
-    } catch (error) {
-      toast({
-        title: "Error submitting form",
-        description: (error as Error).message || "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.open(whatsappUrl, "_blank");
+    setIsSubmitting(false);
+    toast({
+      title: "WhatsApp opened!",
+      description: "Your request is ready to be sent via WhatsApp.",
+    });
+    // Optionally reset form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: productName ? `I'm interested in ${productName}` : "",
+    });
   };
 
   return (

@@ -1,16 +1,29 @@
-
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Badge } from "./ui/badge";
 import QuotationModal from "./QuotationModal";
+import MediaGallery from "./MediaGallery";
+
+interface MediaFile {
+  url: string;
+  type: "image" | "video";
+  name: string;
+}
 
 interface ProductCardProps {
   id: number;
   name: string;
   description: string;
   price?: number;
-  image: string;
+  media_files: MediaFile[];
   features: string[];
 }
 
@@ -19,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   name,
   description,
   price,
-  image,
+  media_files,
   features,
 }) => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -27,12 +40,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <div className="relative h-48 overflow-hidden">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-          />
+        <div className="relative h-48">
+          {media_files && media_files.length > 0 ? (
+            <MediaGallery mediaFiles={media_files} className="h-48" />
+          ) : (
+            <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <p className="text-gray-500">No image available</p>
+            </div>
+          )}
           {price && (
             <Badge className="absolute top-2 right-2 bg-sun-500">
               ₹{price.toLocaleString()}
@@ -53,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </ul>
         </CardContent>
         <CardFooter>
-          <Button 
+          <Button
             className="w-full bg-solar-600 hover:bg-solar-700 text-white"
             onClick={() => setIsQuoteModalOpen(true)}
           >
@@ -61,10 +76,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </Button>
         </CardFooter>
       </Card>
-      
-      <QuotationModal 
-        isOpen={isQuoteModalOpen} 
-        onClose={() => setIsQuoteModalOpen(false)} 
+
+      <QuotationModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
         productName={name}
       />
     </>

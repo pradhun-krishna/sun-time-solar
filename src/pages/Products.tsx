@@ -1,108 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ProductCard from "@/components/ProductCard";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
-// Sample product data
-const products = [
-  {
-    id: 1,
-    name: "Premium Solar Panel",
-    description:
-      "High-efficiency monocrystalline solar panels for maximum power generation",
-    price: 15000,
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/solar-panel.jpg"
-      : "/images/solar-panel.jpg",
-    features: [
-      "Efficiency rating: 21%",
-      "25-year performance warranty",
-      "Anti-reflective coating",
-      "Weather-resistant frame",
-    ],
-  },
-  {
-    id: 2,
-    name: "Solar Battery Storage",
-    description:
-      "Store excess energy for use during nighttime or power outages",
-    price: 45000,
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/battery-unit.jpg"
-      : "/images/battery-unit.jpg",
-    features: [
-      "10 kWh capacity",
-      "10-year warranty",
-      "Smart monitoring system",
-      "Compact design",
-    ],
-  },
-  {
-    id: 3,
-    name: "Solar Inverter",
-    description: "Convert DC electricity from solar panels to AC for home use",
-    price: 18000,
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/inverter.jpg"
-      : "/images/inverter.jpg",
-    features: [
-      "5 kW capacity",
-      "97% efficiency rating",
-      "WiFi monitoring",
-      "MPPT technology",
-    ],
-  },
-  {
-    id: 4,
-    name: "Complete Home Solar Kit",
-    description:
-      "Everything you need to power an average home with solar energy",
-    price: 125000,
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/solar-panel.jpg"
-      : "/images/solar-panel.jpg",
-    features: [
-      "10 premium solar panels",
-      "7 kW inverter",
-      "Battery storage",
-      "Professional installation included",
-    ],
-  },
-  {
-    id: 5,
-    name: "Commercial Solar System",
-    description:
-      "Scalable solar solutions for businesses and commercial properties",
-    price: null, // Custom pricing
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/team-installing.jpg"
-      : "/images/team-installing.jpg",
-    features: [
-      "Custom system design",
-      "High-efficiency panels",
-      "Commercial-grade inverters",
-      "Monitoring system",
-    ],
-  },
-  {
-    id: 6,
-    name: "Solar Water Heater",
-    description: "Utilize solar energy to heat water for domestic use",
-    price: 28000,
-    image: import.meta.env.PROD
-      ? "/Sun-time-Solar-/images/solar-panel.jpg"
-      : "/images/solar-panel.jpg",
-    features: [
-      "200L capacity",
-      "Evacuated tube technology",
-      "Stainless steel tank",
-      "Low maintenance design",
-    ],
-  },
-];
+interface MediaFile {
+  url: string;
+  type: "image" | "video";
+  name: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number | null;
+  media_files: MediaFile[];
+  features: string[];
+}
 
 const Products = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error: any) {
+      toast({
+        title: "Error loading products",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -124,19 +71,25 @@ const Products = () => {
         {/* Products Grid */}
         <section className="py-16 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
-                  image={product.image}
-                  features={product.features}
-                />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center py-12">
+                <p className="text-lg">Loading products...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={parseInt(product.id)}
+                    name={product.name}
+                    description={product.description}
+                    price={product.price}
+                    media_files={product.media_files || []}
+                    features={product.features}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </section>
 

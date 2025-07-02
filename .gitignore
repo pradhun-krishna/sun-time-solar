@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Uncomment or add the following if supabase/migrations should NOT be ignored
+# !supabase/migrations/
