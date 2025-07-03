@@ -15,11 +15,22 @@ interface MediaGalleryProps {
 }
 
 const MediaGallery: React.FC<MediaGalleryProps> = ({
-  mediaFiles,
+  mediaFiles = [],
   className = "",
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  // Debug logs
+  console.log("MediaGallery mediaFiles:", mediaFiles);
+  console.log("MediaGallery currentIndex:", currentIndex);
+
+  // Ensure currentIndex is always valid
+  React.useEffect(() => {
+    if (currentIndex >= mediaFiles.length) {
+      setCurrentIndex(0);
+    }
+  }, [mediaFiles, currentIndex]);
 
   if (!mediaFiles || mediaFiles.length === 0) {
     return (
@@ -57,18 +68,18 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
     <>
       <div className={`relative ${className}`}>
         {/* Main Media Display */}
-        <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+        <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 border-2 border-red-400">
           {currentMedia.type === "image" ? (
             <img
               src={getPublicUrl(currentMedia.url)}
               alt={currentMedia.name}
-              className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
+              className="w-full h-full max-h-full object-contain cursor-pointer hover:scale-105 transition-transform"
               onClick={() => openLightbox(currentIndex)}
             />
           ) : (
             <video
               src={getPublicUrl(currentMedia.url)}
-              className="w-full h-full object-cover cursor-pointer"
+              className="w-full h-full max-h-full object-contain cursor-pointer"
               controls
               onClick={() => openLightbox(currentIndex)}
             >

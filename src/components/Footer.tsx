@@ -95,10 +95,10 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-sun-400" />
                 <a
-                  href="mailto:info@suntimesolar.com"
+                  href="mailto:suntimerg@gmail.com"
                   className="hover:text-sun-400 transition-colors"
                 >
-                  info@suntimesolar.com
+                  suntimerg@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">

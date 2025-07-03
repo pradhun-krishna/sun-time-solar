@@ -30,21 +30,21 @@ const Index = () => {
       position: "Homeowner",
       quote:
         "SunTime Solar's installation team was efficient and professional. My electricity bills have reduced by 70% since installing their panels.",
-      image: "/images/solar-panel.jpg",
+      image: "/images/rajesh kumar.png",
     },
     {
-      name: "Priya Sharma",
+      name: "Prasanna",
       position: "Business Owner",
       quote:
         "The government subsidy process was seamless with SunTime's guidance. Excellent service and high-quality products.",
-      image: "/images/battery-unit.jpg",
+      image: "/images/prasanna.png",
     },
     {
-      name: "Amit Patel",
+      name: "Arun kumar",
       position: "Apartment Complex Manager",
       quote:
         "We've installed solar panels across our entire apartment complex. The ROI has been impressive and the maintenance support is excellent.",
-      image: "/images/team-installing.jpg",
+      image: "/images/Arun kumar.png",
     },
   ];
 
@@ -403,8 +403,25 @@ const Index = () => {
               </h2>
             </div>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              {/* These would be replaced with actual brand logos */}
-              {[1, 2, 3, 4, 5].map((index) => (
+              <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+                <img
+                  src="/images/Indian ministry.svg"
+                  alt="Indian Ministry Logo"
+                  className="h-12"
+                />
+              </div>
+              <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow overflow-hidden">
+                <img
+                  src="/images/utl.jpg"
+                  alt="UTL Logo"
+                  className="h-full w-full object-cover"
+                  style={{
+                    objectPosition: "left center",
+                    transform: "scale(1.15)",
+                  }}
+                />
+              </div>
+              {[3, 4, 5].map((index) => (
                 <div
                   key={index}
                   className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"

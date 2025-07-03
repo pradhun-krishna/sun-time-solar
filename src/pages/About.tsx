@@ -31,8 +31,8 @@ const About = () => {
                 <img
                   src={
                     import.meta.env.PROD
-                      ? "/Sun-time-Solar-/images/team-installing.jpg"
-                      : "/images/team-installing.jpg"
+                      ? "/Sun-time-Solar-/images/our story.jpg"
+                      : "/images/our story.jpg"
                   }
                   alt="SunTime Solar Team"
                   className="rounded-lg shadow-lg w-full h-auto object-cover"

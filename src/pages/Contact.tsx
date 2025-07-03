@@ -65,10 +65,10 @@ const Contact = () => {
                         Send us an email
                       </p>
                       <a
-                        href="mailto:info@suntimesolar.com"
+                        href="mailto:suntimerg@gmail.com"
                         className="text-solar-600 dark:text-solar-400 font-medium mt-1 block hover:underline"
                       >
-                        info@suntimesolar.com
+                        suntimerg@gmail.com
                       </a>
                     </div>
                   </div>
@@ -158,8 +158,8 @@ const Contact = () => {
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   We currently provide solar installation and services across
-                  major cities in India, including Delhi, Mumbai, Bangalore,
-                  Chennai, Hyderabad, and their surrounding areas.
+                  Coimbatore, Mettupalayam, Ooty, Pollachi, Tirupur, Erode, and
+                  their surrounding areas.
                 </p>
               </div>
               {/* FAQ Item 2 */}

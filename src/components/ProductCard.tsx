@@ -32,17 +32,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
   name,
   description,
   price,
-  media_files,
-  features,
+  media_files = [],
+  features = [],
 }) => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
+  // Debug logs
+  console.log("ProductCard props:", {
+    id,
+    name,
+    description,
+    price,
+    media_files,
+    features,
+  });
+
   return (
     <>
-      <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <div className="relative h-48">
+      <Card className="min-h-[400px] flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div className="relative">
           {media_files && media_files.length > 0 ? (
-            <MediaGallery mediaFiles={media_files} className="h-48" />
+            <MediaGallery mediaFiles={media_files} />
           ) : (
             <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
               <p className="text-gray-500">No image available</p>
@@ -57,15 +67,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <CardHeader>
           <CardTitle className="text-xl">{name}</CardTitle>
           <CardDescription className="line-clamp-2">
-            {description}
+            {description && description.trim() !== ""
+              ? description
+              : "No description provided."}
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">
-          <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
-            {features.map((feature, index) => (
-              <li key={index}>{feature}</li>
-            ))}
-          </ul>
+          {features.length > 0 ? (
+            <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
+              {features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">No features listed.</p>
+          )}
         </CardContent>
         <CardFooter>
           <Button
