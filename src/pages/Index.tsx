@@ -30,21 +30,21 @@ const Index = () => {
       position: "Homeowner",
       quote:
         "SunTime Solar's installation team was efficient and professional. My electricity bills have reduced by 70% since installing their panels.",
-      image: "/images/rajesh kumar.png",
+      image: `${import.meta.env.BASE_URL}images/rajesh kumar.png`,
     },
     {
       name: "Prasanna",
       position: "Business Owner",
       quote:
         "The government subsidy process was seamless with SunTime's guidance. Excellent service and high-quality products.",
-      image: "/images/prasanna.png",
+      image: `${import.meta.env.BASE_URL}images/prasanna.png`,
     },
     {
       name: "Arun kumar",
       position: "Apartment Complex Manager",
       quote:
         "We've installed solar panels across our entire apartment complex. The ROI has been impressive and the maintenance support is excellent.",
-      image: "/images/Arun kumar.png",
+      image: `${import.meta.env.BASE_URL}images/Arun kumar.png`,
     },
   ];
 
@@ -104,11 +104,7 @@ const Index = () => {
               <div className="md:w-1/2 flex justify-end">
                 <div className="bg-white p-1 md:p-2 rounded-lg shadow-xl overflow-hidden rotate-2 hover:rotate-0 transition-transform duration-300">
                   <img
-                    src={
-                      import.meta.env.PROD
-                        ? "/Sun-time-Solar-/images/solar-panel.jpg"
-                        : "/images/solar-panel.jpg"
-                    }
+                    src={`${import.meta.env.BASE_URL}images/solar-panel.jpg`}
                     alt="Solar Panel Installation"
                     className="rounded w-full h-64 md:h-80 object-cover"
                   />
@@ -255,11 +251,7 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
                 <img
-                  src={
-                    import.meta.env.PROD
-                      ? "/Sun-time-Solar-/images/gov-subsidy.jpg"
-                      : "/images/gov-subsidy.jpg"
-                  }
+                  src={`${import.meta.env.BASE_URL}images/gov-subsidy.jpg`}
                   alt="Government Subsidy"
                   className="rounded-xl shadow-lg w-full h-auto object-cover hover:shadow-xl transition-shadow duration-300"
                 />
@@ -405,32 +397,55 @@ const Index = () => {
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
               <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
                 <img
-                  src="/images/Indian ministry.svg"
+                  src={`${import.meta.env.BASE_URL}images/Indian ministry.svg`}
                   alt="Indian Ministry Logo"
                   className="h-12"
                 />
               </div>
               <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow overflow-hidden">
                 <img
-                  src="/images/utl.jpg"
+                  src={`${import.meta.env.BASE_URL}images/utl.jpg`}
                   alt="UTL Logo"
-                  className="h-full w-full object-cover"
                   style={{
+                    width: "270%",
+                    height: "100%",
+                    objectFit: "cover",
                     objectPosition: "left center",
-                    transform: "scale(1.15)",
                   }}
+                  className="h-full object-cover"
                 />
               </div>
-              {[3, 4, 5].map((index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
-                >
-                  <span className="text-gray-500 dark:text-gray-400 font-medium">
-                    Partner {index}
-                  </span>
-                </div>
-              ))}
+              <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/tangedco.png`}
+                  alt="TANGEDCO Logo"
+                  className="h-12"
+                />
+              </div>
+              <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow overflow-hidden">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/premier.png`}
+                  alt="Premier Logo"
+                  style={{
+                    width: "160%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                  className="h-full object-cover"
+                />
+              </div>
+              <div className="bg-white dark:bg-gray-800 h-16 w-32 rounded-lg shadow flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow overflow-hidden">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/exide.png`}
+                  alt="Exide Logo"
+                  style={{
+                    width: "160%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                  className="h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
