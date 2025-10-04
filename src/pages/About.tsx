@@ -11,22 +11,25 @@ const About = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-solar-800 text-white py-12">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              About SunTime Solar Enterprises
-            </h1>
-            <p className="text-lg max-w-2xl mx-auto">
-              Learn about our journey, mission, and commitment to sustainable
-              energy solutions.
-            </p>
+        <section className="relative text-white py-14 md:py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-solar-900 via-solar-900/90 to-solar-800/90"></div>
+          <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
+            <div className="text-center">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+                About SunTime Solar Enterprises
+              </h1>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto text-white/90">
+                Learn about our journey, mission, and commitment to sustainable
+                energy solutions.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Company Introduction */}
         <section className="py-16 bg-white dark:bg-gray-800">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="container mx-auto max-w-7xl px-4 md:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-10">
               <div className="md:w-1/2">
                 <img
                   src={
@@ -35,11 +38,13 @@ const About = () => {
                       : "/images/our story.jpg"
                   }
                   alt="SunTime Solar Team"
-                  className="rounded-lg shadow-lg w-full h-auto object-cover"
+                  className="rounded-xl shadow-xl w-full h-auto object-cover"
                 />
               </div>
               <div className="md:w-1/2">
-                <h2 className="text-3xl font-bold mb-6">Our Story</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  Our Story
+                </h2>
                 <p className="text-lg mb-4">
                   SunTime Solar Enterprises is a leading provider of solar
                   energy solutions with over 15 years of experience in service
@@ -63,9 +68,11 @@ const About = () => {
 
         {/* Mission & Values */}
         <section className="py-16 bg-gray-50 dark:bg-gray-900">
-          <div className="container mx-auto px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Mission & Values</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Our Mission & Values
+              </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300">
                 We're driven by a simple but powerful mission: to accelerate the
                 transition to sustainable energy through innovative solar
@@ -74,7 +81,7 @@ const About = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Value 1 */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
                 <div className="h-12 w-12 bg-solar-100 dark:bg-solar-900 rounded-full flex items-center justify-center mb-4">
                   <Sun className="h-6 w-6 text-solar-600 dark:text-solar-400" />
                 </div>
@@ -85,7 +92,7 @@ const About = () => {
                 </p>
               </div>
               {/* Value 2 */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
                 <div className="h-12 w-12 bg-solar-100 dark:bg-solar-900 rounded-full flex items-center justify-center mb-4">
                   <Zap className="h-6 w-6 text-solar-600 dark:text-solar-400" />
                 </div>
@@ -96,7 +103,7 @@ const About = () => {
                 </p>
               </div>
               {/* Value 3 */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
                 <div className="h-12 w-12 bg-solar-100 dark:bg-solar-900 rounded-full flex items-center justify-center mb-4">
                   <Lightbulb className="h-6 w-6 text-solar-600 dark:text-solar-400" />
                 </div>
@@ -112,16 +119,16 @@ const About = () => {
 
         {/* Government Registration Section */}
         <section className="py-16 bg-white dark:bg-gray-800">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="container mx-auto max-w-7xl px-4 md:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-10">
               <div className="md:w-1/2 order-2 md:order-1">
                 <div className="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 font-semibold rounded-full px-4 py-1 text-sm mb-4">
                   Official Partnership
                 </div>
-                <h2 className="text-3xl font-bold mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   Government Registered Solar Provider
                 </h2>
-                <div className="bg-solar-50 dark:bg-gray-700 border-l-4 border-solar-500 p-4 mb-6">
+                <div className="bg-solar-50 dark:bg-gray-700 border-l-4 border-solar-500 p-4 mb-6 rounded-r">
                   <p className="text-lg font-medium">
                     Registered under the Indian Government's Suryaghar Subsidy
                     Scheme
@@ -138,7 +145,7 @@ const About = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="bg-solar-600 hover:bg-solar-700 text-white py-2 px-6 rounded-md font-medium flex items-center space-x-2">
+                  <button className="bg-solar-600 hover:bg-solar-700 text-white py-2.5 px-6 rounded-md font-medium flex items-center space-x-2 shadow-sm">
                     <span>Learn About Subsidies</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
@@ -152,7 +159,7 @@ const About = () => {
                       : "/images/gov-subsidy.jpg"
                   }
                   alt="Government Subsidy"
-                  className="rounded-lg shadow-lg w-full h-auto object-cover"
+                  className="rounded-xl shadow-xl w-full h-auto object-cover"
                 />
               </div>
             </div>
@@ -161,15 +168,17 @@ const About = () => {
 
         {/* Contact Section */}
         <section className="py-16 bg-gray-100 dark:bg-gray-900">
-          <div className="container mx-auto px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Get in Touch
+              </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300">
                 Want to learn more about our company or have questions? Reach
                 out to our team.
               </p>
             </div>
-            <div className="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+            <div className="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 border border-gray-100 dark:border-gray-700">
               <ContactForm />
             </div>
           </div>

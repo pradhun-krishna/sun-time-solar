@@ -37,34 +37,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
-  // Debug logs
-  console.log("ProductCard props:", {
-    id,
-    name,
-    description,
-    price,
-    media_files,
-    features,
-  });
-
   return (
     <>
-      <Card className="min-h-[400px] flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <Card className="min-h-[400px] flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
         <div className="relative">
           {media_files && media_files.length > 0 ? (
             <MediaGallery mediaFiles={media_files} />
           ) : (
-            <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <p className="text-gray-500">No image available</p>
+            <div className="w-full aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <p className="text-gray-500 dark:text-gray-300">
+                No image available
+              </p>
             </div>
           )}
           {price && (
-            <Badge className="absolute top-2 right-2 bg-sun-500">
+            <Badge className="absolute top-2 right-2 bg-gradient-to-r from-sun-500 to-solar-600 text-white shadow-sm">
               ₹{price.toLocaleString()}
             </Badge>
           )}
         </div>
-        <CardHeader>
+        <CardHeader className="pb-2">
           <CardTitle className="text-xl">{name}</CardTitle>
           <CardDescription className="line-clamp-2">
             {description && description.trim() !== ""
@@ -72,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               : "No description provided."}
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex-grow">
+        <CardContent className="flex-grow pt-0">
           {features.length > 0 ? (
             <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
               {features.map((feature, index) => (

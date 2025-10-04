@@ -4,65 +4,36 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
+    /* Softer, warmer light theme */
+    --background: 45 33% 98%; /* off-white */
+    --foreground: 222.2 60% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222.2 60% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 60% 10%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 199 89% 48%; /* solar sky */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 30% 97%;
+    --secondary-foreground: 222.2 47% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 215.4 16% 42%;
 
-    --accent: 35 92% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 40 95% 52%; /* sun */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 58%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 25% 90%;
+    --input: 214 25% 90%;
+    --ring: 222 70% 35%;
 
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 47% 11%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 47% 11%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 199 89% 48%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 35 92% 50%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --radius: 0.6rem;
   }
 }
 
@@ -73,17 +44,90 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Subtle page backdrop with solar accents */
+    background-image:
+      radial-gradient(1200px 600px at 100% -10%, hsla(40, 95%, 52%, 0.06), rgba(255,255,255,0) 60%),
+      radial-gradient(900px 500px at -10% 110%, hsla(199, 89%, 48%, 0.06), rgba(255,255,255,0) 60%);
+    background-attachment: fixed;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Light hero images with solar tint overlays */
   .hero-gradient {
-    background: linear-gradient(rgba(7, 89, 133, 0.8), rgba(12, 74, 110, 0.8)), url('/images/hero-solar.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255,255,255,0.6)), url('/images/hero-solar.jpg');
     background-size: cover;
     background-position: center;
   }
 
   .hero-gradient-prod {
-    background: linear-gradient(rgba(7, 89, 133, 0.8), rgba(12, 74, 110, 0.8)), url('/Sun-time-Solar-/images/hero-solar.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255,255,255,0.6)), url('/Sun-time-Solar-/images/hero-solar.jpg');
     background-size: cover;
     background-position: center;
   }
+}
+
+@layer utilities {
+  .hover-raise {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .hover-raise:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .fade-in-up {
+    animation: fadeInUp 600ms ease both;
+  }
+  .float-slow {
+    animation: floatSlow 6s ease-in-out infinite;
+    will-change: transform;
+  }
+  .shimmer {
+    background-image: linear-gradient(
+      110deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.35) 35%,
+      rgba(255,255,255,0) 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmerMove 2.2s linear infinite;
+  }
+  .solar-rays {
+    background: conic-gradient(
+      from 0deg,
+      hsla(40,95%,52%,0.15),
+      hsla(199,89%,48%,0.12),
+      hsla(40,95%,52%,0.15)
+    );
+    filter: blur(12px);
+    animation: spin 18s linear infinite;
+    opacity: 0.6;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmerMove {
+  0% { background-position: -120% 0; }
+  100% { background-position: 120% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }

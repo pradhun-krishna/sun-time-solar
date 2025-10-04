@@ -12,13 +12,13 @@ import ContactForm from "./ContactForm";
 
 const Footer = () => {
   return (
-    <footer className="bg-solar-900 text-white pt-12 pb-6">
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="bg-solar-900 text-white pt-12 pb-6 border-t border-white/10">
+      <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">SunTime Solar</h3>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300/90 mb-4">
               Leading provider of solar energy solutions with over 15 years of
               experience in service and installation across India.
             </p>
@@ -116,11 +116,13 @@ const Footer = () => {
           {/* Contact Form */}
           <div>
             <h3 className="text-xl font-bold mb-4">Send Us a Message</h3>
-            <ContactForm isFooterForm={true} />
+            <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+              <ContactForm isFooterForm={true} />
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-6 mt-8">
+        <div className="border-t border-white/10 pt-6 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
               © {new Date().getFullYear()} SunTime Solar Enterprises. All rights
